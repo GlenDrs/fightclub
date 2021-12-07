@@ -14,13 +14,18 @@
   <div class="field">
     <%= f.label "Combat" %>
     <%= f.text_field :combat %>
+    <br>
   </div>
 
-  <%= f.label "Description" %>
-  <%= f.text_area :description %>
+  <div class="field">
+    <%= f.label "Description" %>
+    <%= f.text_area :description %>
+    <br>
+  </div>
 
-  <%= f.submit %>
-
+  <div class="field">
+    <%= f.submit %>
+  </div>
   <%=link_to 'Log Out', destroy_user_session_path, method: :delete%> 
 
 <% end %>

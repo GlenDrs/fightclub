@@ -11,7 +11,9 @@
   <%= @combats.each do |combat| %>
     <tr>
       <td><%= combat.combat %> </td>
+      <br>
       <td><%= combat.description %></td>
+      <br>
       <td><%= link_to 'Show', combat %></td>
       <td><%= link_to 'Destroy', combat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <td></td>
