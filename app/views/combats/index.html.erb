@@ -1,0 +1,21 @@
+<h1>All the combats</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Combat</th>
+      <th>Description</th>
+    </tr>
+  </thead>  
+
+  <%= @combats.each do |combat| %>
+    <tr>
+      <td><%= combat.combat %> </td>
+      <td><%= combat.description %></td>
+      <td><%= link_to 'Show', combat %></td>
+      <td><%= link_to 'Destroy', combat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td></td>
+    </tr>  
+  <% end %>
+
+</table>

@@ -1,0 +1,26 @@
+<%= form_with(model: @combats, url: combats_path) do |f| %>
+  <% if @combat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@combat.errors.count, "error") %> prohibited this combat from being saved:</h2>
+
+      <ul>
+        <% @combat.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+       <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label "Combat" %>
+    <%= f.text_field :combat %>
+  </div>
+
+  <%= f.label "Description" %>
+  <%= f.text_area :description %>
+
+  <%= f.submit %>
+
+  <%=link_to 'Log Out', destroy_user_session_path, method: :delete%> 
+
+<% end %>
