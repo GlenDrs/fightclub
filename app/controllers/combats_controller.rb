@@ -13,7 +13,18 @@ class CombatsController < ApplicationController
   end
 
   def create
-    @combat = Combat.new (combat_params)
+    @combat = Combat.new(combat_params)
+
+    respond_to do |format|
+      if @combat.save
+        format.html { redirect_to @combat, notice: "Combat was successfully created." }
+        format.json { render :show, status: :created, location: @combat }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @combat.errors, status: :unprocessable_entity }
+      end
+    end
+
   end
 
   def destroy 
@@ -21,8 +32,10 @@ class CombatsController < ApplicationController
   end
 
   private
-
+   
     def combat_params
-      params.require(:combat).permit(:combat, :description) 
+     # params.require(:combat).permit(:combat, :description)
+      params.permit(:combat, :description)
     end
+
 end
