@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one :combat
   #Utilisateur.includes(:events).where(:utilisateurs < 3) 
+  has_one :compte 
 end
