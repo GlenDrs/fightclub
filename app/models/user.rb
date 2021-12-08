@@ -4,6 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one :combat
-  #Utilisateur.includes(:events).where(:utilisateurs < 3) 
+  #User.includes(:combat).where(:users < 3) 
   has_one :compte 
 end
