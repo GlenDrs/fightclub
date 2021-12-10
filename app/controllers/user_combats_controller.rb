@@ -3,16 +3,16 @@ class UserCombatsController < ApplicationController
   
   def new
     @user_combat = UserCombat.new
+    @result = params_join
   end
 
   def create
-    @user_current = User.find(current_user.id)    
-    @combat_selected_id = Combat.all.each do |comb_select|
-      if comb_select.combat == :name_combat
-        return comb_select.id
-      end
-    end    
-    @user_combat = UserCombat.create(user_id: @user_current, combat_id: @combat_selected_id)
+    @user_current = User.find(current_user.id) 
+    var_name =  params[:combat]
+    combat_selected = Combat.find_by(combat: var_name)
+    combat_selected_id =  combat_selected.id
+    
+    @user_combat = UserCombat.create(user_id: @user_current, combat_id: combat_selected_id)
   end
 
   def show
@@ -22,10 +22,7 @@ class UserCombatsController < ApplicationController
   private
 
   def params_join
-    
-    @combat = Combat.find(combat.id)
-    params.permit(:user_id, :combat_id)
-
+       
   end
 
 end

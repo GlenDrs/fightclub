@@ -11,25 +11,15 @@
   <% end %>
 </table>
 
-<%= form_with(model: @user_combat, url: user_combats_path) do |form| %>
-  <% if @user_combat.errors.any? %>
-    <div id="error_explanation">
-
-      <ul>
-        <% @user_combat.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-       <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_with(model: @combat, url: combats_path) do |form| %>
+ 
 
   <%= form.label "Add combat" %>
-  <%= form.text_field :name_combat  %>
+  <%= form.text_field :combat %>
   <div class="actions">
     <%= form.submit %>
   </div>
+    <%=link_to 'Log Out', destroy_user_session_path, method: :delete%> 
 
 <% end %> 
-
-
  
