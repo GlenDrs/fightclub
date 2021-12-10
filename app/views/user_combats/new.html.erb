@@ -1,0 +1,35 @@
+<h2> Adding user to combat </h2>
+ 
+<table>
+    <p> In the previews list, choose the combat that you wont to fight </p>
+    <% Combat.all.each do |combat| %>
+    <tr>
+      <td> <%= combat.combat %> </td>
+      <br>
+      <td></td>
+    </tr>  
+  <% end %>
+</table>
+
+<%= form_with(model: @user_combat, url: user_combats_path) do |form| %>
+  <% if @user_combat.errors.any? %>
+    <div id="error_explanation">
+
+      <ul>
+        <% @user_combat.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+       <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.label "Add combat" %>
+  <%= form.text_field :name_combat  %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %> 
+
+
+ 

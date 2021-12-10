@@ -1,11 +1,11 @@
 class CombatsController < ApplicationController
-  #before_action :authenticate_user!, except: [:index, :show] 
 
   def index
     @combats = Combat.all
   end
 
   def show
+    @combats = Combat.find(params[:id])
   end
 
   def new
@@ -25,6 +25,12 @@ class CombatsController < ApplicationController
       end
     end
 
+  end
+
+  def edit
+  end
+
+  def update
   end
 
   def destroy 

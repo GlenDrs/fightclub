@@ -14,10 +14,15 @@
       <br>
       <td><%= combat.description %></td>
       <br>
+      <br>
+      <td><p><b>the id: <%= combat.id %></b></p></td>
+      <br>
+      <td><p>Add user to combat: </p></td>
       <td><%= link_to 'Show', combat %></td>
       <td><%= link_to 'Destroy', combat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <td></td>
     </tr>  
   <% end %>
+
 
 </table>
