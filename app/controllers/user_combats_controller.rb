@@ -1,18 +1,19 @@
 class UserCombatsController < ApplicationController
   #before_action :authenticate_user!, except: [:index, :show] 
-  
+  def index
+  end
+
   def new
     @user_combat = UserCombat.new
+    @combat_for_id = Combat.all
   end
 
   def create
-    @user_current = User.find(current_user.id) 
-    @combat_for_id = Combat.all
-    var_name =  params[:combat]
-    combat_selected = Combat.find_by(combat: var_name)
-    combat_selected_id =  combat_selected.id
-    
-    @user_combat = UserCombat.new(user_id: @user_current, combat_id: combat_selected_id)
+    user_current_id = current_user.id 
+    combat_name = params["user_combat"]["combat_name"]
+    combat_search = Combat.find_by(name: combat_name)
+    user_combat = UserCombat.create(user_id: user_current_id, combat_id: combat_search.id ) 
+    redirect_to user_combat_path(user_combat.id)
   end
 
   def show
@@ -22,7 +23,7 @@ class UserCombatsController < ApplicationController
   private
 
   def params_join
-       
+    params(:name)
   end
 
 end

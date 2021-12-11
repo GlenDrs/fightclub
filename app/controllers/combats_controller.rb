@@ -1,11 +1,12 @@
 class CombatsController < ApplicationController
+  #before_action :authenticate_user!, except: [:index, :show] 
 
   def index
     @combats = Combat.all
   end
 
   def show
-    @combats = Combat.find(params[:id])
+    @combat = Combat.find(params[:id])
   end
 
   def new
@@ -15,16 +16,11 @@ class CombatsController < ApplicationController
   def create
     @combat = Combat.new(combat_params)
 
-    respond_to do |format|
-      if @combat.save
-        format.html { redirect_to @combat, notice: "Combat was successfully created." }
-        format.json { render :show, status: :created, location: @combat }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @combat.errors, status: :unprocessable_entity }
-      end
+    if @combat.save
+      redirect_to @combat, notice: "Combat was successfully created."  
+    else
+      redirect_to :new 
     end
-
   end
 
   def edit
@@ -41,7 +37,7 @@ class CombatsController < ApplicationController
    
     def combat_params
      # params.require(:combat).permit(:combat, :description)
-      params.permit(:combat, :description)
+      params.permit(:name, :description)
     end
 
 end

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
- resources :user_combats
+  resources :user_combats
   resources :combats
   devise_for :users
   resources :comptes

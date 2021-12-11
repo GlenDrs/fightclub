@@ -1,24 +1,20 @@
 <h2> Adding user to combat </h2>
  
 <table>
-    <p> In the previews list, choose the combat that you wont to fight </p>
+    <p> In the previews list, choose the combat that you want to fight </p>
     <% Combat.all.each do |combat| %>
     <tr>
-      <td> <%= combat.combat %> </td>
+      <td> <%= combat.name %> </td>
       <br>
       <td></td>
     </tr>  
   <% end %>
 </table>
 
-<%= form_with(model: @combat_for_id, url: user_combats_path) do |form| %>
- 
-
-  <%= form.label "Add combat" %>
-  <%= form.text_field :combat %>
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-    <%=link_to 'Log Out', destroy_user_session_path, method: :delete%> 
+<%= form_with(model: @user_combat ) do |form| %>
+  
+  <%= form.label "Add combat name" %>
+  <%= form.text_field(:combat_name) %>
+  <%= form.submit "add" %>
 
 <% end %> 
