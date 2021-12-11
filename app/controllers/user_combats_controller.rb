@@ -3,16 +3,16 @@ class UserCombatsController < ApplicationController
   
   def new
     @user_combat = UserCombat.new
-    @result = params_join
   end
 
   def create
     @user_current = User.find(current_user.id) 
+    @combat_for_id = Combat.all
     var_name =  params[:combat]
     combat_selected = Combat.find_by(combat: var_name)
     combat_selected_id =  combat_selected.id
     
-    @user_combat = UserCombat.create(user_id: @user_current, combat_id: combat_selected_id)
+    @user_combat = UserCombat.new(user_id: @user_current, combat_id: combat_selected_id)
   end
 
   def show
