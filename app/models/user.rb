@@ -8,5 +8,7 @@ class User < ApplicationRecord
   #has_many :combats ,:through=> :user_combats
   has_one :compte 
   has_many :user_combats
+  has_many :combats, through: :user_combats
+
   
 end

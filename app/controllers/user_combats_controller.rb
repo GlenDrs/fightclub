@@ -12,8 +12,14 @@ class UserCombatsController < ApplicationController
     user_current_id = current_user.id 
     combat_name = params["user_combat"]["combat_name"]
     combat_search = Combat.find_by(name: combat_name)
-    user_combat = UserCombat.create(user_id: user_current_id, combat_id: combat_search.id ) 
-    redirect_to user_combat_path(user_combat.id)
+    user_combat = UserCombat.new(user_id: user_current_id, combat_id: combat_search.id)
+    if user_combat.save
+      flash[:succes] = "You have created a participation!"
+      redirect_to user_combat_path(user_combat.id)
+    else
+      flash.now[:error] = user_combat.errors.messages
+      render action: :new
+    end
   end
 
   def show
