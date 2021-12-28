@@ -9,7 +9,10 @@ class ComptesController < ApplicationController
   end
 
   def update
-
+    if @user_count = User.where("last_seen_at < ?", comptes_path.include?(current_user),2.minutes.ago).count
+      #if comptes_path.include?(current_user)
+      @compte.credits = 5 * @user_count
+    end
   end
 
   private
