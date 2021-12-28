@@ -6,9 +6,15 @@ class User < ApplicationRecord
   #User.includes(:combat).where(:users < 3) 
   
   #has_many :combats ,:through=> :user_combats
-  has_one :compte 
+  has_one :compte, dependent: :destroy, autosave: true
   has_many :user_combats
   has_many :combats, through: :user_combats
 
-  
+  after_create :create_compte
+
+  private
+
+    def create_compte
+      @compte = Compte.create(credits: 0, niveau: 0, user_id: self.id)
+    end
 end

@@ -1,5 +1,5 @@
 class ComptesController < ApplicationController
-  #before_action :authenticate_user!, except: [:index, :show] 
+  before_action :authenticate_user!
   def index
     @compte = Compte.all
   end
@@ -7,4 +7,14 @@ class ComptesController < ApplicationController
   def show
     @compte = Compte.find(params[:id])
   end
+
+  def update
+
+  end
+
+  private
+
+    def params_compte
+      params(:credits, :niveau, :user_id)
+    end
 end

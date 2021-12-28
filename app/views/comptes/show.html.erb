@@ -1,7 +1,11 @@
 <h1>Compte#show</h1>
 
 <div>
-  <p> Your credit points are: 
-    <%= @compte.credit %>
+  <p> Hi
+    <%= current_user.email %>
   </p>
-</div>  
+  <p> Your credit points are: </p>
+    <%= @compte.credits %>
+  </p>
+  <p> Watch the video if you want to win some credits! </p>
+</div>
