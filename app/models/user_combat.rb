@@ -1,6 +1,7 @@
 class UserCombat < ApplicationRecord
   belongs_to :user
   belongs_to :combat
+  has_many :bets 
 
   validate :player_count_validation
   validate :unique_player
