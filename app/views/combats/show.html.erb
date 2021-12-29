@@ -10,6 +10,11 @@
   <%= @combat.description %>
 </p>
 
+<p>The fighters of this combat are:
+  <%= @combat.user_combats.first.user.email %> and,<br>
+  <%= @combat.user_combats.last.user.email %>
+</p>
+
 <%= link_to 'Back', combats_path %>
 
-
+<h3> Choos your fighter! </h3>

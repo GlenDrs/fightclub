@@ -3,6 +3,7 @@ class CreateCombats < ActiveRecord::Migration[6.1]
     create_table :combats do |t|
       t.string :name
       t.text :description
+      t.string :winer
 
       t.timestamps
     end

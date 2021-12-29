@@ -16,8 +16,9 @@ ActiveRecord::Schema.define(version: 2021_12_27_110039) do
   enable_extension "plpgsql"
 
   create_table "bets", force: :cascade do |t|
-    t.string "making_bet"
+    t.string "name_fighter_bet"
     t.integer "sum_bet"
+    t.boolean "checking_bet"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -25,6 +26,7 @@ ActiveRecord::Schema.define(version: 2021_12_27_110039) do
   create_table "combats", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.string "winer"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
