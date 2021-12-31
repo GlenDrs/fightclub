@@ -11,11 +11,12 @@ class BetsController < ApplicationController
 
   def create
     @beting = Bet.new(params_bet)
-    #byebug    
+    byebug    
     if @beting.save
       redirect_to @beting, notice: "Your bett has been registred!"
     else
-      redirect_to :combats_path
+      flash[:succes] = "Error no bet was taken !"
+      redirect_to bets_path
     end
   end
 

@@ -26,8 +26,8 @@
         <%= form.text_field(:name_fighter_bet) %>
         <%= form.label "Add Credits you want to give for this fight" %>
         <%= form.number_field (:sum_bet) %>
-        <%#= form.hidden_field :user_combat.user_id, :value => 2 %>
-        <%= form.submit "add" %>
+        <%#= form.hidden_field :user_id, :value => current_user.id %>
+        <%= form.submit "Submit Bet" %>
         <br/><br/>
       <% end %> 
     <% else %>
