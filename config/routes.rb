@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  get 'bets/index'
-  get 'bets/show'
+  resources :bets
   get 'videos/show'
   devise_for :users
   resources :users, path:  'custom/user', :only => [:show]

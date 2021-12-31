@@ -12,9 +12,26 @@
 
 <p>The fighters of this combat are:
   <%= @combat.user_combats.first.user.email %> and,<br>
-  <%= @combat.user_combats.last.user.email %>
+  <% if @combat.user_combats.length > 1 %>
+    <%= @combat.user_combats.last.user.email %>
+  <% else %>
+   <p> This fight is not completed! </p> 
+  <% end %>  
 </p>
 
 <%= link_to 'Back', combats_path %>
 
-<h3> Choos your fighter! </h3>
+<h3> Choos your fighter! and how much will you bet for your fighter </h3>
+<p> You can't bet under 5 credits and more than 100 credits </p>
+
+<%= form_with(model: @beting ) do |form| %>
+  
+  <%= form.label "Add the Fighter you want to bet" %>
+  <%= form.text_field(:name_fighter_bet) %>
+  <%= form.label "Add Credits you want to give for this fight" %>
+  <%= form.number_field (:sum_bet) %>
+  <%= form.submit "add" %>
+
+<% end %> 
+
+
