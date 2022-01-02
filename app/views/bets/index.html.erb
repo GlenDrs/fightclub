@@ -15,8 +15,6 @@
       <%= comb_bet.user_combats.first.user.email %> and,<br>
       <%= comb_bet.user_combats.last.user.email %>
 </p>
-
-
     <% else %>
        <p style="color:red;"> This fight is not completed! </p> 
     <% end %>  
@@ -31,13 +29,15 @@
       <%= form.label "Add the Fighter you want to bet" %>
       <%= form.text_field(:name_fight) %>
       <%= form.label "Select the Fight you want to bet to" %>
-      <%= form.select :jepja_tjetrit, Combat.pluck(:name, :id) %>
+      <%= form.select :name, @selected_combat =  Combat.pluck(:name) %>
+      <%   combat_id_selected = Combat.find_by(name: @selected_combat).id %>
       <%= form.label "Choose you fighter:"%>
-      <%= form.select :email, User.pluck(:email) %>
+      <%= form.select :email, @selected_user = User.pluck(:email) %>
+      <% user_id_selected = User.find_by(email: @selected_user).id %>
+      <% id_user_combat = UserCombat.find_by(user_id: user_id_selected, combat_id: combat_id_selected).id %>
       <%= form.label "Add Credits you want to give for this fight" %>
       <%= form.number_field (:sum_bet) %>
-      <%= form.hidden_field :user_combat_id, :value => 1 %>
+      <%= form.hidden_field :user_combat_id, :value => id_user_combat %>
       <%= form.submit "Submit Bet" %>
       <br/><br/>
-    
   <% end %>
