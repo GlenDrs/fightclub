@@ -10,27 +10,34 @@
     <%= comb_bet.description %>
 <br/>
 </p>
-
 <p>The fighters of this combat are:
     <% if comb_bet.user_combats.length == 2 %>
       <%= comb_bet.user_combats.first.user.email %> and,<br>
       <%= comb_bet.user_combats.last.user.email %>
 </p>
 
-<h3> Choos your fighter! and how much will you bet for your fighter </h3>
-<p> You can't bet under 5 credits and more than 100 credits </p>
 
-      <%= form_with(model: @beting ) do |form| %>
-        
-        <%= form.label "Add the Fighter you want to bet" %>
-        <%= form.text_field(:name_fighter_bet) %>
-        <%= form.label "Add Credits you want to give for this fight" %>
-        <%= form.number_field (:sum_bet) %>
-        <%#= form.hidden_field :user_id, :value => current_user.id %>
-        <%= form.submit "Submit Bet" %>
-        <br/><br/>
-      <% end %> 
     <% else %>
        <p style="color:red;"> This fight is not completed! </p> 
     <% end %>  
+  <% end %>   
+    
+<h3> Choos your fight! and how much will you bet for your fighter </h3>
+<p> You can't bet under 5 credits and more than 100 credits </p>
+
+
+    <%= form_with(model: @beting, url: bets_path) do |form| %>
+        
+      <%= form.label "Add the Fighter you want to bet" %>
+      <%= form.text_field(:name_fight) %>
+      <%= form.label "Select the Fight you want to bet to" %>
+      <%= form.select :jepja_tjetrit, Combat.pluck(:name, :id) %>
+      <%= form.label "Choose you fighter:"%>
+      <%= form.select :email, User.pluck(:email) %>
+      <%= form.label "Add Credits you want to give for this fight" %>
+      <%= form.number_field (:sum_bet) %>
+      <%= form.hidden_field :user_combat_id, :value => 1 %>
+      <%= form.submit "Submit Bet" %>
+      <br/><br/>
+    
   <% end %>

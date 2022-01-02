@@ -7,7 +7,6 @@ class User < ApplicationRecord
   has_one :compte, dependent: :destroy, autosave: true
   has_many :user_combats
   has_many :combats, through: :user_combats
-  has_many :bets, dependent: :destroy 
 
   after_create :create_compte
 

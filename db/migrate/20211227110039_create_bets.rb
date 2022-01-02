@@ -1,10 +1,10 @@
 class CreateBets < ActiveRecord::Migration[6.1]
   def change
     create_table :bets do |t|
-      t.string :name_fighter_bet
+      t.string :name_fight
       t.integer :sum_bet  
-      t.boolean :checking_bet
 
+      t.belongs_to :user_combat, null: false, foreign_key: true
       t.timestamps
     end
   end

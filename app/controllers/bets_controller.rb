@@ -1,21 +1,21 @@
 class BetsController < ApplicationController
   before_action :authenticate_user!
 
-  def new
-    @beting = Bet.new
-  end
-
   def index
     @combat_bet = Combat.all
   end
 
+  def new
+    @beting = Bet.new
+  end
+
   def create
     @beting = Bet.new(params_bet)
-    byebug    
+    #byebug    
     if @beting.save
       redirect_to @beting, notice: "Your bett has been registred!"
     else
-      flash[:succes] = "Error no bet was taken !"
+      flash[:erreur] = "Error no bet was taken !"
       redirect_to bets_path
     end
   end
@@ -23,6 +23,6 @@ class BetsController < ApplicationController
   private
 
     def params_bet
-      params.permit(:name_fighter_bet,:sum_bet, :checking_bet)
+      params.permit(:name_fight, :sum_bet, :user_combat_id)
     end
 end
