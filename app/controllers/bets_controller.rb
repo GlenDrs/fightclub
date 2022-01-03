@@ -10,9 +10,14 @@ class BetsController < ApplicationController
   end
 
   def create
-    @beting = Bet.new(params_bet)
-    #byebug    
-    if @beting.save
+    combat_id_selected = Combat.find_by(selected_combat).id
+    user_id_selected = User.find_by(selected_user).id
+    @id_user_combat = UserCombat.find_by(user_id: user_id_selected, combat_id: combat_id_selected).id
+    @beting = Bet.new(name_fight: params[:name_fight], sum_bet: params[:sum_bet], user_combat_id: @id_user_combat)
+    if @beting.sum_bet >= current_user.compte.credits
+    flash[:erreur] = "Error no bet was taken !"
+    redirect_to bets_path
+    elsif @beting.save
       redirect_to @beting, notice: "Your bett has been registred!"
     else
       flash[:erreur] = "Error no bet was taken !"
@@ -22,7 +27,12 @@ class BetsController < ApplicationController
 
   private
 
-    def params_bet
-      params.permit(:name_fight, :sum_bet, :user_combat_id)
+    def selected_combat
+      params.permit(:name)
     end
+
+    def selected_user
+      params.permit(:email)
+    end
+
 end
