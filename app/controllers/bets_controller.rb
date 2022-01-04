@@ -1,6 +1,5 @@
 class BetsController < ApplicationController
   before_action :authenticate_user!
-
   def index
     @combat_bet = Combat.all
   end
@@ -18,7 +17,10 @@ class BetsController < ApplicationController
     flash[:erreur] = "Error no bet was taken !"
     redirect_to bets_path
     elsif @beting.save
-      redirect_to @beting, notice: "Your bett has been registred!"
+      @account_current_user = current_user.compte
+      new_balance = @account_current_user.credits - @beting.sum_bet
+      @account_current_user.update(credits: new_balance)
+      redirect_to bet_path(@beting), notice: "Your bett has been registred!"
     else
       flash[:erreur] = "Error no bet was taken !"
       redirect_to bets_path
@@ -34,5 +36,4 @@ class BetsController < ApplicationController
     def selected_user
       params.permit(:email)
     end
-
 end

@@ -1,28 +1,32 @@
-<h1>All the combats</h1>
+<h1>Bets#index</h1>
+<div>
+  <%= @combats.each do |combat| %>
+    <br><br>
+    <strong>Name:</strong>
+    <%= combat.name%>
 
-<table>
-  <thead>
-    <tr>
-      <th>Combat</th>
-      <th>Description</th>
-    </tr>
-  </thead>  
+    <div>
+      <strong>Description:</strong>
+      <%= combat.description %>
+    </div>
 
-  <% @combats.each do |combat| %>
-    <tr>
-      <td><%= combat.name %> </td>
-      <br>
-      <td><%= combat.description %></td>
-      <br>
-      <br>
-      <td><p><b>the id: <%= combat.id %></b></p></td>
-      <br>
-      <td><p>Add user to combat: </p></td>
-      <td><%= link_to 'Show', combat %></td>
-      <td><%= link_to 'Destroy', combat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <td></td>
-    </tr>  
+    <div>
+    <%= link_to 'Show', combat %>
+    <%= link_to 'Destroy', combat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </div>
+    <br>
+
+    <div>
+      <p>The fighters of this combat are: </p>
+
+        <% if combat.user_combats.length == 2 %>
+          <%= combat.user_combats.first.user.email %> and,<br>
+          <%= combat.user_combats.last.user.email %>
+          <%= link_to "New Bet", new_bet_path()  %>
+        <% else %>
+          <p style="color:red;"> This fight is not completed! </p>
+        <% end %>
+    </div>
+
   <% end %>
-
-
-</table>
+</div>

@@ -1,37 +1,4 @@
 <h1>Bets#index</h1>
-<p>
-  <%= @combat_bet.each do |comb_bet| %>
-    <strong>Name:</strong>
-    <%= comb_bet.name%>
-</p>
+<div>
 
-<p>
-    <strong>Description:</strong>
-    <%= comb_bet.description %>
-<br/> </p>
-<p>The fighters of this combat are:
-    <% if comb_bet.user_combats.length == 2 %>
-      <%= comb_bet.user_combats.first.user.email %> and,<br>
-      <%= comb_bet.user_combats.last.user.email %>
-</p>
-    <% else %>
-       <p style="color:red;"> This fight is not completed! </p> 
-    <% end %>
-  <% end %>
-    
-<h3> Choos your fight! and how much will you bet for your fighter </h3>
-<p> You can't bet under 5 credits and more than 100 credits </p>
-
-    <%= form_with(model: @beting, url: bets_path) do |form| %>
-        
-      <%= form.label "Add the name of you bet:" %>
-      <%= form.text_field(:name_fight) %>
-      <%= form.label "Select the Fight you want to bet to" %>
-      <%= form.select :name, Combat.pluck(:name) %>
-      <%= form.label "Choose you fighter:"%>
-      <%= form.select :email, User.pluck(:email) %>
-      <%= form.label "Add Credits you want to give for this fight" %>
-      <%= form.number_field (:sum_bet) %>
-      <%= form.submit "Submit Bet" %>
-      <br/><br/>
-  <% end %>
+</div>
