@@ -31,6 +31,6 @@ class BetsController < ApplicationController
   private
 
     def selected_user
-      params.permit(:pseudo)
+      params.require(:bet).permit(:pseudo)
     end
 end

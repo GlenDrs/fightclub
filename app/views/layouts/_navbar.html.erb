@@ -3,7 +3,7 @@
     <nav>
       <ul>
         <% if user_signed_in? %>
-          <li><%= current_user.email %></li>
+          <li><%= current_user.pseudo %></li>
           <li>Your have: <%= current_user.compte.credits %> credits</li>
           <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
         <% else %>
