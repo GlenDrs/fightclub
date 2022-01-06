@@ -6,6 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-5.times do 
-  Combat.create(id:rand(1..5), name: Faker::Games::StreetFighter.stage , description: Faker::GreekPhilosophers.quote)
+10.times do
+  Combat.create(id:rand(1..10), name: Faker::Games::StreetFighter.stage , description: Faker::GreekPhilosophers.quote)
 end

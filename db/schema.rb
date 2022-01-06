@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(version: 2021_12_27_110039) do
   enable_extension "plpgsql"
 
   create_table "bets", force: :cascade do |t|
-    t.string "name_fight"
     t.integer "sum_bet"
     t.bigint "user_combat_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -54,6 +53,8 @@ ActiveRecord::Schema.define(version: 2021_12_27_110039) do
     t.string "pseudo"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.boolean "admin"
+    t.boolean "{:default=>false}"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
