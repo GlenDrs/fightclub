@@ -1,5 +1,4 @@
 class CombatsController < ApplicationController
-  #before_action :authenticate_user!, except: [:index, :show] 
 
   def index
     @combats = Combat.all
@@ -21,21 +20,17 @@ class CombatsController < ApplicationController
     else
       redirect_to :new 
     end
+
   end
 
-
-  def update
-  end
-
-  def destroy 
+  def destroy
     @combat.destroy
   end
 
   private
-   
+
     def combat_params
-     # params.require(:combat).permit(:combat, :description)
+      # params.require(:combat).permit(:combat, :description)
       params.permit(:name, :description, :winer)
     end
-
 end

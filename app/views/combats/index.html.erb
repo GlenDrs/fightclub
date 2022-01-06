@@ -21,8 +21,8 @@
       <p>The fighters of this combat are: </p>
 
         <% if combat.user_combats.length == 2 %>
-          <%= combat.user_combats.first.user.email %> and,<br>
-          <%= combat.user_combats.last.user.email %>
+          <%= combat.user_combats.first.user.pseudo %> and,<br>
+          <%= combat.user_combats.last.user.pseudo %>
           <%= link_to "New Bet", new_bet_path(combat: combat)  %>
         <% else %>
           <p style="color:red;"> This fight is not completed! </p>

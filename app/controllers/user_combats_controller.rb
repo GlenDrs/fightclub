@@ -26,10 +26,4 @@ class UserCombatsController < ApplicationController
     @show_user_combat = UserCombat.find(params[:id])
   end
 
-  private
-
-  def params_join
-    params(:name)
-  end
-
 end
