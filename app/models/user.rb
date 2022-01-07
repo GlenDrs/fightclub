@@ -9,15 +9,13 @@ class User < ApplicationRecord
 
   after_create :create_compte
 
-  attr_writer :login
-
   def login
-    @login || pseudo || email
+    pseudo || email
   end
 
   private
 
     def create_compte
-      @compte = Compte.create(credits: 0, niveau: 0, user_id: self.id)
+      Compte.create(credits: 0, niveau: 0, user_id: self.id)
     end
 end
