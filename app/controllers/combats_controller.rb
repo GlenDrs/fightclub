@@ -30,7 +30,6 @@ class CombatsController < ApplicationController
   private
 
     def combat_params
-      # params.require(:combat).permit(:combat, :description)
-      params.permit(:name, :description, :winer)
+      params.require(:combat).permit(:name, :description)
     end
 end

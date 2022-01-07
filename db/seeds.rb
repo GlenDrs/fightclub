@@ -7,5 +7,5 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 10.times do
-  Combat.create(id:rand(1..10), name: Faker::Games::StreetFighter.stage , description: Faker::GreekPhilosophers.quote)
+  Combat.create( name: Faker::Games::StreetFighter.stage , description: Faker::GreekPhilosophers.quote)
 end

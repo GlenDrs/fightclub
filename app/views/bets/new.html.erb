@@ -1,0 +1,14 @@
+<h3> Choos your fight! and how much will you bet for your fighter </h3>
+<p> You can't bet under 5 credits and more than 100 credits </p>
+
+  <%= form_with(model: @beting, url: bets_path) do |form| %>
+
+    <%= form.hidden_field(:combat_id, :value => params["combat"]) %>
+    <%= form.label "Choose you fighter:"%>
+    <%= form.select :pseudo, @fight_selected.users.map{|user| user.pseudo} %>
+    <%= form.label "Add Credits you want to give for this fight" %>
+    <%= form.number_field (:sum_bet) %>
+    <%= form.submit "Submit Bet" %>
+    <br/>
+
+  <% end %>
