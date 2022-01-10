@@ -1,4 +1,19 @@
 <h1>Bets#index</h1>
 <div>
+  <%= @bet.each do |bet|%>
+    <p> The credit given at this bet are:
+      <%= bet.sum_bet%> credits
+    </p>
 
+    <p> The fight name of this bet is:
+      <%= bet.user_combat.combat.name %>
+    </p>
+
+    <p> The fighters of this bet are:
+      <%= bet.user_combat.combat.users[0].pseudo %> and
+      <%= bet.user_combat.combat.users[1].pseudo %>
+    </p>
+
+    <br><br>
+  <% end %>
 </div>

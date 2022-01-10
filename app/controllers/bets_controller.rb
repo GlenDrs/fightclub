@@ -4,6 +4,10 @@ class BetsController < ApplicationController
     @bet = Bet.all
   end
 
+  def show
+    @show_bet = Bet.find(params[:id])
+  end
+
   def new
     @beting = Bet.new
     @fight_selected = Combat.find(params["combat"])
