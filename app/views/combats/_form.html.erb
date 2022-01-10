@@ -1,4 +1,4 @@
-<%= form_with(model: combat, url: combats_path) do |f| %>
+<%= form_with(model: [:admin, combat]) do |f| %>
   <% if combat.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(combat.errors.count, "error") %> prohibited this combat from being saved:</h2>

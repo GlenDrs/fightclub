@@ -24,7 +24,18 @@ class CombatsController < ApplicationController
   end
 
   def destroy
-    @combat.destroy
+    fighter_ids = Combat.find(params[:id]).user_combats.map do |user_combat|
+      user_combat.user_id
+    end
+
+    if fighter_ids.include?(current_user.id)
+      @combat.destroy
+      flash[:success] = "You have destroyed the combat"
+      redirect_to combats_path
+    else
+      flash[:error] = "You can't destroy the combat of an other fighter"
+      redirect_to combats_path
+    end
   end
 
   private
