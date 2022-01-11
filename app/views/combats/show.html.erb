@@ -1,5 +1,4 @@
 <h1>The current combat:</h1>
-
 <p>
   <strong>Name:</strong>
   <%= @combat.name %>
@@ -11,7 +10,5 @@
 </p>
 
 <p>
-  <%= link_to "New Bet", new_bet_path()  %>
+  <%= link_to "New Bet", new_bet_path(combat: @combat)  %>
 </p>
-
-

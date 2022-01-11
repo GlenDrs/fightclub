@@ -7,8 +7,12 @@
     <%= @show_bet.user_combat.combat.users[1].pseudo %>
   </p>
 
+  <p>The one that made the bet is:
+    <%= @user_beted.pseudo %>
+  </p>
+
   <p> The amount of credits given to this bet is:
-    <% @show_bet.sum_bet %>
+    <%= @show_bet.sum_bet %> credits.
   </p>
 
   <p> Created at:

@@ -4,10 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
   has_one :compte, dependent: :destroy, autosave: true
-  has_many :user_combats
+  has_many :user_combats, dependent: :destroy
   has_many :combats, through: :user_combats
+  has_many :bets
 
   after_create :create_compte
+
+  def account_active?
+  blocked_at.nil?
+  end
 
   def login
     pseudo || email

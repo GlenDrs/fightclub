@@ -16,7 +16,7 @@ class CombatsController < ApplicationController
     @combat = Combat.new(combat_params)
 
     if @combat.save
-      redirect_to @combat, notice: "Combat was successfully created."  
+  redirect_to @combat, notice: "Combat was successfully created."
     else
       redirect_to :new 
     end

@@ -18,9 +18,11 @@ ActiveRecord::Schema.define(version: 2021_12_27_110039) do
   create_table "bets", force: :cascade do |t|
     t.integer "sum_bet"
     t.bigint "user_combat_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_combat_id"], name: "index_bets_on_user_combat_id"
+    t.index ["user_id"], name: "index_bets_on_user_id"
   end
 
   create_table "combats", force: :cascade do |t|
@@ -32,7 +34,7 @@ ActiveRecord::Schema.define(version: 2021_12_27_110039) do
   end
 
   create_table "comptes", force: :cascade do |t|
-    t.integer "credits"
+    t.integer "credits", default: 0
     t.integer "niveau"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -64,6 +66,7 @@ ActiveRecord::Schema.define(version: 2021_12_27_110039) do
   end
 
   add_foreign_key "bets", "user_combats"
+  add_foreign_key "bets", "users"
   add_foreign_key "comptes", "users"
   add_foreign_key "user_combats", "combats"
   add_foreign_key "user_combats", "users"

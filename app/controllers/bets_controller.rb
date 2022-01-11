@@ -4,19 +4,15 @@ class BetsController < ApplicationController
     @bet = Bet.all
   end
 
-  def show
-    @show_bet = Bet.find(params[:id])
-  end
-
   def new
     @beting = Bet.new
-    @fight_selected = Combat.find(params["combat"])
+    @fight_selected = Combat.find(params["combat"]) 
   end
 
   def create
     user_id_selected = User.find_by(selected_user).id
     @id_user_combat = UserCombat.find_by(user_id: user_id_selected, combat_id: params[:bet][:combat_id]).id
-    @beting = Bet.new(sum_bet: params[:bet][:sum_bet], user_combat_id: @id_user_combat)
+    @beting = Bet.new(sum_bet: params[:bet][:sum_bet], user_combat_id: @id_user_combat, user_id: current_user.id)
 
     if @beting.sum_bet >= current_user.compte.credits
       flash[:erreur] = "Error no bet was taken !"
@@ -29,6 +25,18 @@ class BetsController < ApplicationController
     else
       flash[:erreur] = "Error no bet was taken !"
       redirect_to bets_path
+    end
+  end
+
+  def show
+    fighter_id = Bet.find(params[:id]).user_id
+
+    if fighter_id == current_user.id
+      @show_bet = Bet.find(params[:id])
+      @user_beted = User.find(@show_bet.user_id)
+    else
+      flash[:error] = "You're not at the right page"
+      redirect_to combats_path
     end
   end
 

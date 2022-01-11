@@ -4,6 +4,8 @@ class CreateBets < ActiveRecord::Migration[6.1]
       t.integer :sum_bet  
 
       t.belongs_to :user_combat, null: false, foreign_key: true
+      t.belongs_to :user, null: false, foreign_key: true
+
       t.timestamps
     end
   end
