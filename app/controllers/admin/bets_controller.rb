@@ -1,15 +1,25 @@
 module Admin
   class BetsController < ApplicationController
+    #before_action :authenticate_admin
     def index
       @bet = Bet.all
     end
 
-    def new
+    def show
+      @show_bet = Bet.find(params[:id])
     end
 
-    def create
+    def destroy
+      Bet.destroy
     end
 
+    private
+
+    def authenticate_admin
+      unless current_user&.admin
+        flash[:error] = "You're not a adminstrator"
+        redirect_to root_path
+      end
+    end
   end
-
 end
