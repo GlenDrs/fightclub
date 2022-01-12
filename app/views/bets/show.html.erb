@@ -1,5 +1,9 @@
 <h1>Bets#show</h1>
 <div>
+  <p>Hello
+    <%= @user_beted.pseudo %>!
+  </p>
+
   <p>The fight name: <%= @show_bet.user_combat.combat.name %> </p>
 
   <p> The fighters of this bet are:
@@ -7,15 +11,11 @@
     <%= @show_bet.user_combat.combat.users[1].pseudo %>
   </p>
 
-  <p>The one that made the bet is:
-    <%= @user_beted.pseudo %>
-  </p>
-
   <p> The amount of credits given to this bet is:
     <%= @show_bet.sum_bet %> credits.
   </p>
 
-  <p> Created at:
+  <p> The bet was made at:
     <%= @show_bet.created_at %>
   </p>
 

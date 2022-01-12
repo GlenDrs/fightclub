@@ -11,7 +11,7 @@ class User < ApplicationRecord
   after_create :create_compte
 
   def account_active?
-  blocked_at.nil?
+    blocked_at.nil?
   end
 
   def login

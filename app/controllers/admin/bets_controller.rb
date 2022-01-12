@@ -1,12 +1,13 @@
 module Admin
   class BetsController < ApplicationController
-    #before_action :authenticate_admin
+    before_action :authenticate_admin
     def index
       @bet = Bet.all
     end
 
     def show
       @show_bet = Bet.find(params[:id])
+      @user_made_bet = User.find( @show_bet.user_id)
     end
 
     def destroy
