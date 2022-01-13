@@ -26,18 +26,17 @@
           <%= combat.user_combats.last.user.pseudo %>
         </p>
 
-        <% @bet.each do |bet|%>
+        <% @bet.map do |bet|%>
           <p> The credit given at this bet are:
             <% if  bet.user_combat.combat.id == combat.id %>
               <%= "Test if it works" %>
-              <% @total_sum_beted = 0 %>
-              <%= @total_sum_beted += bet.sum_bet%> credits<br>
+              <%= bet.sum_bet %> credits<br>
             <% end %>
-            <% @rest_sum_2bet = 100 - @total_sum_beted %>
           </p>
         <% end %>
-        <p>  You can still bet
-          <%= @rest_sum_2bet %> credits on this fight.
+        <p>   <br>
+          You can still bet
+          <%#= @rest_sum_2bet = 100 - @total_sum_beted %> credits on this fight.
         </p>
         <%= link_to "New Bet", new_bet_path(combat: combat)  %>
       <% else %>

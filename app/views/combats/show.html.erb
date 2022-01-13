@@ -14,14 +14,10 @@
 </p>
 <br><br>
 
-<p> The fighters of this bet are:
-  <%= @show_bet.user_combat.combat.users[0].pseudo %> and
-  <%= @show_bet.user_combat.combat.users[1].pseudo %>
+<p> The number of bets at this fight are:
+  <%= @bets.count %>
 </p>
 
 <p> The total credits sum beted in this fight is:
-  <%= @sum_total_of_bets %> <br>
-  <%#= @combat.user_combats.find(@combat.user_combats.all.ids[0]).bets.first.sum_bet %>
-  You can still bet at this fight untill
-  <%= 100 - @sum_total_of_bets %> credits maximum
+
 </p>

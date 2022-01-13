@@ -2,22 +2,14 @@ class CombatsController < ApplicationController
 
   def index
     @combats = Combat.all
-    @bet = Bet.all
   end
 
   def show
     @combat = Combat.find(params[:id])
-
-    fighter_id = Bet.find(params[:id]).user_id
-
-    if fighter_id == current_user.id
-      @show_bet = Bet.find(params[:id])
-      @user_beted = User.find(@show_bet.user_id)
-    else
-      flash[:error] = "You're not at the right page"
-      redirect_to combats_path
+    @bets = @combat.user_combats.map do |user_combat|
+      user_combat.bets
     end
-    @sum_total_of_bets = 0
+
   end
 
   def new
