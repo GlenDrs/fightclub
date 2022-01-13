@@ -3,8 +3,10 @@
 <div>
   <%= @combats.each do |combat| %>
     <br><br>
-    <strong>Name:</strong>
-    <%= combat.name%>
+    <div>
+      <strong>Name:</strong>
+      <%= combat.name%>
+    </div>
 
     <div>
       <strong>Description:</strong>
@@ -18,15 +20,29 @@
     <br>
 
     <div>
-      <p>The fighters of this combat are: </p>
-
-        <% if combat.user_combats.length == 2 %>
-          <%= combat.user_combats.first.user.pseudo %> and,<br>
+      <% if combat.user_combats.length == 2 %>
+        <p> The fighters of this fight are:
+          <%= combat.user_combats.first.user.pseudo %> and
           <%= combat.user_combats.last.user.pseudo %>
-          <%= link_to "New Bet", new_bet_path(combat: combat)  %>
-        <% else %>
-          <p style="color:red;"> This fight is not completed! </p>
+        </p>
+
+        <% @bet.each do |bet|%>
+          <p> The credit given at this bet are:
+            <% if  bet.user_combat.combat.id == combat.id %>
+              <%= "Test if it works" %>
+              <% @total_sum_beted = 0 %>
+              <%= @total_sum_beted += bet.sum_bet%> credits<br>
+            <% end %>
+            <% @rest_sum_2bet = 100 - @total_sum_beted %>
+          </p>
         <% end %>
+        <p>  You can still bet
+          <%= @rest_sum_2bet %> credits on this fight.
+        </p>
+        <%= link_to "New Bet", new_bet_path(combat: combat)  %>
+      <% else %>
+        <p style="color:red;"> This fight is not completed! </p>
+      <% end %>
     </div>
 
   <% end %>
