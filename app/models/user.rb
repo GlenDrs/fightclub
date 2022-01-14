@@ -10,8 +10,16 @@ class User < ApplicationRecord
 
   after_create :create_compte
 
-  def account_active?
-    blocked_at.nil?
+  def blacklisting_user?
+    account_active.nil?
+  end
+
+  def active_for_authentication?
+    super && blacklisting_user?
+  end
+
+  def inactive_message
+    "Sorry, this account has been deactivated."
   end
 
   def login
