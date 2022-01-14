@@ -20,5 +20,8 @@
 
 <p> The total credits sum beted in this fight is:
   <%= @x.sum %><br>
-  You can make a bat untill <%= 100 - @x.sum %> credits at most.
+  <% if @x.sum < 95 %>
+    You can make a bet untill <%= 100 - @x.sum %> credits at most.
+  <% else %> Sorry The amount of bet credits is reach, you can no long bet on this fight!
+  <% end %>
 </p>
