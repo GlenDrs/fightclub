@@ -1,0 +1,13 @@
+<h2> All the Users </h2>
+
+<% @list_users_for_admin.each do |the_user|%>
+  <p>The users pseudo is:
+    <%= the_user.pseudo %><br>
+  </p>
+
+  <p>The users email is:
+    <%= the_user.email %><br>
+  </p>
+
+  <%= link_to "Editing User", edit_admin_user_path(the_user.id) %> <br><br>
+<% end %>
