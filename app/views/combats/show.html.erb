@@ -15,9 +15,10 @@
 <br><br>
 
 <p> The number of bets at this fight are:
-  <%= @bets.count %>
+  <%= @bets.count %><br>
 </p>
 
 <p> The total credits sum beted in this fight is:
-
+  <%= @x.sum %><br>
+  You can make a bat untill <%= 100 - @x.sum %> credits at most.
 </p>

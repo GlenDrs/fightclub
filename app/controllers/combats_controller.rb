@@ -6,10 +6,14 @@ class CombatsController < ApplicationController
 
   def show
     @combat = Combat.find(params[:id])
-    @bets = @combat.user_combats.map do |user_combat|
-      user_combat.bets
+    @bets = @combat.user_combats.joins(:bets) do |user_combat|
+      user_combat
     end
-
+    @total_sum_bet = @bets.map(&:bets)
+    @x =[]
+    for i in 0..@total_sum_bet.count-1
+      @x[i] = @total_sum_bet[i].first.sum_bet
+    end
   end
 
   def new

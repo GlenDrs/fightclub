@@ -1,7 +1,7 @@
-<h1>Fight#index</h1>
+<h1>All the fights</h1>
 
 <div>
-  <%= @combats.each do |combat| %>
+  <% @combats.each do |combat| %>
     <br><br>
     <div>
       <strong>Name:</strong>
@@ -26,22 +26,10 @@
           <%= combat.user_combats.last.user.pseudo %>
         </p>
 
-        <% @bet.map do |bet|%>
-          <p> The credit given at this bet are:
-            <% if  bet.user_combat.combat.id == combat.id %>
-              <%= "Test if it works" %>
-              <%= bet.sum_bet %> credits<br>
-            <% end %>
-          </p>
-        <% end %>
-        <p>   <br>
-          You can still bet
-          <%#= @rest_sum_2bet = 100 - @total_sum_beted %> credits on this fight.
-        </p>
-        <%= link_to "New Bet", new_bet_path(combat: combat)  %>
-      <% else %>
+      <%= link_to "New Bet", new_bet_path(combat: combat)  %>
+      <% else %> <br>
         <p style="color:red;"> This fight is not completed! </p>
-      <% end %>
+      <% end %> <br>
     </div>
 
   <% end %>
