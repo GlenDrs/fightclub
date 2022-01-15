@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :combats, only: [:new, :edit, :create, :destroy, :index]
     resources :bets, only: [:index, :show, :destroy]
-    resources :users, :only => [:index, :show, :edit]
-    end
+    resources :users, :only => [:index, :edit, :update]
+  end
   resources :bets
   get 'videos/show'
   devise_for :users

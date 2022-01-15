@@ -1,1 +1,14 @@
 <h2> The user that you want to edit is </h2>
+
+<%#= form_with model: @editing_user do |f| %>
+<%= form_with model:[:admin,@editing_user] do |f| %>
+  The user that you want to edit is:
+  <%= f.text_field :pseudo %><br>
+  and his email is:
+  <%= f.text_field :email %><br>
+  Do you want to blocklist this user?
+  <%#= f.check_box :account_active %>
+  <%= f.hidden_field(:id, :value => params["user"]) %>
+  <%= f.select :account_active, [['Yes', true], ['No', nil]] %>
+  <%= f.submit 'Update' %>
+<% end %>

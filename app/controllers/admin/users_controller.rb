@@ -4,22 +4,26 @@ module Admin
       @list_users_for_admin = User.all
     end
 
-    def edit
+    def edit 
       @editing_user = User.find(params[:id])
     end
-=begin
-    def edit
-      @user_blacklisting = User.all
-      if @user_blacklisting.pudate(blacklisting_user)
 
+    def update
+      @editing_user = User.find(params[:id])
+      if @editing_user.update(blacklisting_user)
+        flash[:success] = "You have blacklisted the user"
+        redirect_to admin_user_path
+      else
+        flash[:error] = "You didn't blacklisted the user"
+        render 'edit'
       end
     end
-=end
+
     private
 
-    def blacklisting_users
+    def blacklisting_user
       params.require(:user).permit(:account_active)
+      #params[:user][:account_active]
     end  
   end
-
 end
